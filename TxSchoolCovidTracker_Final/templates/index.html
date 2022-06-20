@@ -1,0 +1,122 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texas Covid-19 Cases Tracker </title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
+      $( function() {
+        var dateFormat = "yyyy-mm-dd",
+          from = $( "#from" )
+            .datepicker({
+              defaultDate: "+1w",
+              changeMonth: true,
+              numberOfMonths: 1
+            })
+            .on( "change", function () {
+              to.datepicker( "option", "minDate", getDate( this ) );
+            }),
+          to = $( "#to" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1
+          })
+          .on( "change", function () {
+            from.datepicker( "option", "maxDate", getDate( this ) );
+          });
+     
+        function getDate( element ) {
+          var date;
+          try {
+            date = $.datepicker.parseDate( dateFormat, element.value );
+          } catch( error ) {
+            date = null;
+          }
+     
+          return date;
+        }
+        
+        function validation(form){
+          var f=document.getElementById('from')
+          var t=document.getElementById('to')
+          if((t>=f)&&(f>=new date('2021-08-08'))&&(t<=new date('2022-03-01'))){
+            return true;
+          }
+          else{
+            alert('Date is not in valid range')
+            return false;
+          }
+        }
+        
+      } );
+      </script>
+</head>
+<html>
+   <body>
+     <main>
+      <header id="header" class="header">
+        
+        
+          <div class="nav-link">
+            <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+            
+            </div>
+        
+      </header>
+        <div class="bar">
+          
+          <img src="/static/images/graph.png" alt="logo"> 
+            <!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+            <h1 class="Title">Texas School Covid-19 Case Tracker</h1>       
+          </div>
+        <form method="POST" action="{{url_for('hello')}}">
+            <div class="Options">
+                
+                    <div class="Searchbar">
+                    
+                      <input type="text" class="searchTerm" placeholder="Enter school or district" class="School" id="School" name="School" >
+                    
+                      
+                      <select class="schoolType" id="schoolType" name="schoolType" width="200">
+                        <option value="H S"> High School
+                        <option value="J H"> Junior High School
+                        <option value="MIDDLE"> Middle School
+                        <option value="EL"> Elementary School
+                        <option value="D">School District
+                      </select>
+                    </div>
+
+                    
+                    <div class="searchDate">
+                    <label for="from">From</label>
+                    <input type="text" id="from" name="from"  class="searchBox">
+                    <label for="To">to</label>
+                    <input type="text" id="to" name="to"  class="searchBox">
+                    </div>
+                    <div class="searchButton">
+                    <button id='submit' type="submit" class="Button" value="submit">Show Cases</button>
+                    </div>
+                    
+                           
+            </div>
+        </form>
+
+
+
+
+<p class="description">
+Data source is from Texas and other national authorities.
+John T. All rights reserved. December, 2021
+
+
+
+</p>
+
+
+     </main>      
+   </body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<head>
+    <title>Covid-19-John</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+<html>
+   <body>
+     <main>
+      <header id="header" class="header">
+        <div class="nav-link">
+          <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+        </div>
+    </header>
+<style> 
+         th, td {
+            border: 1px solid black;
+         }
+         
+        table {
+           margin: 0 auto; 
+
+        }
+
+</style>
+</head>
+        <div class="hello_title">
+            <!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+            <h1 class="display-6 fw-bold">Covid-19 Cases for: {{ school_v|safe }} </h1>
+        </div>
+        <div class="hello_subheading">
+            <lable class="display-8 fw-bold" > Date Range: {{dt_rng_v|safe }} </lable>
+        </div>
+<table width="80%" style="margin: 0 auto; class="center"> 
+    <!-- thead> -->
+    <!-- <tr>  -->
+    <!--    <th>District_Name</th> -->
+    <!--    <th>Campus</th> -->
+    <!-- </tr> --> 
+    <!-- /thead> --> 
+    <tbody  style="margin: 0 auto; class="center" > 
+             <h1>
+                <!--Displaying the converted table-->
+                     {% for table in tables %}
+                    <h2>{{titles[loop.index]}}</h2> 
+                    {{ table|safe }}
+                    {% endfor %}     
+                </h1> 
+    </tbody> 
+</table>
+
+
+
+    <img src="/plot.png" alt="my plot" class="matplotlib-plot">
+    <img src="/plot2.png" alt="my plot" class="matplotlib-plot">
+
+             
+            
+          
+     </main>      
+   </body>
+</html>

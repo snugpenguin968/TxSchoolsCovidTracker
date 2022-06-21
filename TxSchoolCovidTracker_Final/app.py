@@ -121,13 +121,15 @@ def hello():
      prev_y=df_new2.loc[(df_new2['Campus'].str.contains(name+' MIDDLE'))&(df_new2.index<startdate)]['Student_Cases'].tolist()
      new_ticks=df_new2.loc[(df_new2['Campus'].str.contains(name+' MIDDLE'))&(df_new2.index>enddate)].index
      new_y=df_new2.loc[(df_new2['Campus'].str.contains(name+' MIDDLE'))&(df_new2.index>enddate)]['Student_Cases'].tolist()
-   else:
+   elif school_v=='EL':
      ticks=df_new2.loc[(df_new2['Campus'].str.contains(name+' EL'))&(((df_new2.index)>=startdate)&((df_new2.index)<=enddate))].index
      y=df_new2.loc[(df_new2['Campus'].str.contains(name+' EL'))&(((df_new2.index)>=startdate)&((df_new2.index)<=enddate))]['Student_Cases'].tolist()
      prev_ticks=df_new2.loc[(df_new2['Campus'].str.contains(name+' EL'))&(df_new2.index<startdate)].index
      prev_y=df_new2.loc[(df_new2['Campus'].str.contains(name+' EL'))&(df_new2.index<startdate)]['Student_Cases'].tolist()
      new_ticks=df_new2.loc[(df_new2['Campus'].str.contains(name+' EL'))&(df_new2.index>enddate)].index
      new_y=df_new2.loc[(df_new2['Campus'].str.contains(name+' EL'))&(df_new2.index>enddate)]['Student_Cases'].tolist()
+   else:
+     return redirect(url_for('index'))
    ticks=sorted(ticks)
    new_ticks=sorted(new_ticks)
    prev_ticks=sorted(prev_ticks)
